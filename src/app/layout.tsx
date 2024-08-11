@@ -2,6 +2,7 @@ import LeftSidebar from "@/components/layout/LeftSidebar";
 import MobileHeader from "@/components/layout/MobileHeader";
 import RightSidebar from "@/components/layout/RightSidebar";
 import Toolbar from "@/components/layout/Toolbar";
+import Providers from "@/lib/providers";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -26,17 +27,19 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <div className="mx-auto flex min-h-screen flex-col bg-white lg:max-w-5xl">
-          <MobileHeader />
-          <div className="flex flex-1 md:h-screen">
-            <LeftSidebar />
-            <main className="mt-14 w-full overflow-y-auto border-r border-gray-200 pb-16 md:mt-0 md:w-1/2 md:pb-0 xl:w-3/5">
-              {children}
-            </main>
-            <RightSidebar />
+        <Providers>
+          <div className="mx-auto flex min-h-screen flex-col bg-white lg:max-w-5xl">
+            <MobileHeader />
+            <div className="flex flex-1 md:h-screen">
+              <LeftSidebar />
+              <main className="mt-14 w-full overflow-y-auto border-r border-gray-200 pb-16 md:mt-0 md:w-1/2 md:pb-0 xl:w-3/5">
+                {children}
+              </main>
+              <RightSidebar />
+            </div>
+            <Toolbar />
           </div>
-          <Toolbar />
-        </div>
+        </Providers>
       </body>
     </html>
   );
